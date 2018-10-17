@@ -37,8 +37,6 @@ db_dicts = [m.groupdict() for sublist in db_dicts for m in sublist]
 
 with open(PG_CONFIG_DIR + '/userlist.txt', 'w') as fh:
     tmp = '\n'.join(set([f"\"{m['username']}\" \"md5{md5(m['password'] + m['username'])}\"" for m in db_dicts]))
-    print("\n\n[userlist.txt]\n")
-    print(tmp)
     fh.write(tmp)
 
 databases = '\n'.join([
@@ -152,6 +150,4 @@ unix_socket_dir =
 """
 
 with open(f"{PG_CONFIG_DIR}/pgbouncer.ini", 'w') as fh:
-    print("\n\n[pgbouncer.ini]\n")
-    print(ini_file)
     fh.write(ini_file)
